@@ -5,28 +5,85 @@ using UnityEngine;
 public class GridController : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject tile;
+    [SerializeField] private GameObject tile;
+    [SerializeField] private GameObject startPointTile;
+    [SerializeField] private GameObject endPointTile;
     [SerializeField] private float cellSize;
-    [SerializeField] private Vector2 gridSize;
-    public float [][] gridCoordenates;
-
+    [Range(8, 16)]
+    [SerializeField] private int max_size;
+    private Vector2 startPosition, endPosition;
+    private Vector3[,] grid;
 
 
     void Start()
     {
-
-        for (int i = 0; i < gridSize.x; i++)
+        max_size = Random.Range(8, max_size);
+        grid = new Vector3[max_size, max_size];
+        GenerateGrid();
+        GenerateStartAndEndPoint();
+        InstantiateGrid();
+    }
+    void GenerateStartAndEndPoint()
+    {
+        float percent = Random.Range(0, 100);
+        if (percent <=50)
         {
-            for (int j = 0; j < gridSize.y; j++)
+            //cria baseado em x
+            int positionYStart = Random.Range(0, max_size-1);
+            int positionYEnd = Random.Range(0, max_size - 1);
+            startPosition = new Vector2(max_size -1 , positionYStart);
+            endPosition = new Vector2(0, positionYEnd);
+        }
+        else
+        {
+            int positionXStart = Random.Range(0, max_size - 1);
+            int positionXEnd = Random.Range(0, max_size - 1);
+            startPosition = new Vector2(positionXStart, max_size - 1);
+            endPosition = new Vector2(positionXEnd, 0);
+        }
+    }
+    public Vector3[,] GenerateGrid()
+    {
+        for (int i = 0; i < max_size; i++)
+        {
+            for (int j = 0; j < max_size; j++)
             {
-                Instantiate(tile, new Vector3( i*cellSize, 0, j*cellSize), Quaternion.identity);
+                Vector3 coordinate = new Vector3(i * cellSize, 0, j * cellSize);
+                grid[i, j] = coordinate;
+                //Instantiate(tile, coordinate, Quaternion.identity);
+            }
+        }
+        return grid;
+    }
+
+    public void InstantiateGrid()
+    {
+        for (int i = 0; i < max_size; i++)
+        {
+            for (int j = 0; j < max_size; j++)
+            {
+                Vector3 coordinate = new Vector3(i * cellSize, 0, j * cellSize);
+                grid[i, j] = coordinate;
+                if (i == startPosition.x && j == startPosition.y)
+                {
+                    Instantiate(startPointTile, coordinate, Quaternion.identity);
+                }else if (i == endPosition.x && j == endPosition.y)
+                {
+                    Instantiate(endPointTile, coordinate, Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(tile, coordinate, Quaternion.identity);
+                }
             }
         }
     }
-
-    // Update is called once per frame
-    void Update()
+    public Vector3[,] GetGrid()
     {
-        
+        return grid;
     }
+
+
+
+
 }
