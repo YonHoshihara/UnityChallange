@@ -9,18 +9,20 @@ public class GridController : MonoBehaviour
     [SerializeField] private GameObject startPointTile;
     [SerializeField] private GameObject endPointTile;
     [SerializeField] private float cellSize;
-    [Range(8, 16)]
+    [Range(8, 100)]
     [SerializeField] private int max_size;
     private Vector2 startPosition, endPosition;
     private Vector3[,] grid;
 
-
-    void Start()
+    private void Awake()
     {
-        max_size = Random.Range(8, max_size);
-        grid = new Vector3[max_size, max_size];
         GenerateGrid();
         GenerateStartAndEndPoint();
+    }
+    void Start()
+    {
+        //use this line to generate grid on random size
+        //max_size = Random.Range(8, max_size);
         InstantiateGrid();
     }
     void GenerateStartAndEndPoint()
@@ -44,13 +46,14 @@ public class GridController : MonoBehaviour
     }
     public Vector3[,] GenerateGrid()
     {
+
+        grid = new Vector3[max_size, max_size];
         for (int i = 0; i < max_size; i++)
         {
             for (int j = 0; j < max_size; j++)
             {
                 Vector3 coordinate = new Vector3(i * cellSize, 0, j * cellSize);
                 grid[i, j] = coordinate;
-                //Instantiate(tile, coordinate, Quaternion.identity);
             }
         }
         return grid;
@@ -83,7 +86,19 @@ public class GridController : MonoBehaviour
         return grid;
     }
 
+    public Vector2 GetStartPosition()
+    {
+        return startPosition;
+    }
 
+    public Vector2 GetEndPosition()
+    {
+        return endPosition;
+    }
 
+    public float GetCellSize()
+    {
+        return cellSize;
+    }
 
 }

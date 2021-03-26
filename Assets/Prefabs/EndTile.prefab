@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4197076422415810409}
   - component: {fileID: 7269443633143025545}
   - component: {fileID: 6799318237618569980}
+  - component: {fileID: 4253704020085155067}
   m_Layer: 0
   m_Name: EndTile
   m_TagString: Untagged
@@ -93,3 +94,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4253704020085155067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585645442187122722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e2948f205fed3e43a060b707316b1ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roundController: {fileID: -6655682602705465554, guid: 17adc253d9dbe06479e0d15051043803,
+    type: 3}
+  movementController: {fileID: 3088563985449663478, guid: 17adc253d9dbe06479e0d15051043803,
+    type: 3}
