@@ -7,19 +7,48 @@ public class RoundController : MonoBehaviour
     // Start is called before the first frame update
     [Range(1,2)]
     public int playerOnTurn;
+    [Range(0,3)]
+    private int moveCount;
     [SerializeField] public GameController gameController;
+    public bool canIMove;
     
     void Start()
     {
+        moveCount = 0;
         playerOnTurn = 1;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        canIMove = true;
        
     }
 
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        CheckCurrentPlayer();
+    }
+
+    private void CheckCurrentPlayer()
+    {
+        if (canIMove)
+        {
+            if (moveCount == 3)
+            {
+                if (playerOnTurn == 1)
+                {
+                    playerOnTurn = 2;
+                    moveCount = 0;
+
+                }
+                else
+                    playerOnTurn = 1;
+                    moveCount = 0;
+            }
+        }
+    }
+    
+    public void AddMoveCount()
+    {
+        moveCount++;
+    }
     public int GetPlayerOnTurn()
     {
         return playerOnTurn;
