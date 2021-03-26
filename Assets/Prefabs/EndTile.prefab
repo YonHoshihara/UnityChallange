@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4253704020085155067}
   m_Layer: 0
   m_Name: EndTile
-  m_TagString: Untagged
+  m_TagString: end
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,7 +106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2948f205fed3e43a060b707316b1ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundController: {fileID: -6655682602705465554, guid: 17adc253d9dbe06479e0d15051043803,
-    type: 3}
+  gameController: {fileID: 0}
   movementController: {fileID: 3088563985449663478, guid: 17adc253d9dbe06479e0d15051043803,
     type: 3}

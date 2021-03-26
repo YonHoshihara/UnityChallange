@@ -9,7 +9,7 @@ public class RoundController : MonoBehaviour
     public int playerOnTurn;
     [Range(0,3)]
     private int moveCount;
-    [SerializeField] public GameController gameController;
+    [SerializeField] private GameController gameController;
     public bool canIMove;
     
     void Start()
@@ -21,6 +21,14 @@ public class RoundController : MonoBehaviour
     }
 
     // Update is called once per frame
+    private void Update()
+    {
+        if (gameController.gameOver)
+        {
+            canIMove = false;
+        }
+    }
+
     void FixedUpdate()
     {
         CheckCurrentPlayer();

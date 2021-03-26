@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
 
     public GameObject player1, player2;
+    public bool gameOver;
+    [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private Text victoryText;
     [SerializeField] private GridController gridController;
     [SerializeField] private RoundController roundController;
     [SerializeField] private Camera mainCamera;
@@ -14,6 +18,7 @@ public class GameController : MonoBehaviour
     
     void Start()
     {
+        gameOver = false;
         grid = gridController.GetGrid();
         InstantiatePlayer();
         SetMaincameraFollow();
@@ -27,10 +32,11 @@ public class GameController : MonoBehaviour
     private void InstantiatePlayer()
     {
         Vector2 startPosition = gridController.GetStartPosition();
+        Vector2 endPosition = gridController.GetEndPosition();
         Vector3 position = grid[(int)startPosition.x, (int)startPosition.y];
-        Vector3 positionP2 = grid[(int)startPosition.x, (int)startPosition.y];
-        position = new Vector3(position.x - gridController.GetCellSize() / 4, position.y + gridController.GetCellSize(), position.z);
-        positionP2 = new Vector3(positionP2.x + gridController.GetCellSize()/4, positionP2.y + gridController.GetCellSize(), positionP2.z);
+        Vector3 positionP2 = grid[(int)endPosition.x, (int)endPosition.y];
+        position = new Vector3(position.x, position.y + gridController.GetCellSize(), position.z);
+        positionP2 = new Vector3(positionP2.x, positionP2.y + gridController.GetCellSize(), positionP2.z);
         player1 = Instantiate(player1, position, Quaternion.identity);
         player2 = Instantiate(player2, positionP2, Quaternion.identity);
     }
@@ -52,8 +58,17 @@ public class GameController : MonoBehaviour
         mainCamera.transform.position = new Vector3(player.transform.position.x,mainCamera.transform.position.y, player.transform.position.z);
     }
     
+    public void SetGameOver(int victoryPlayer)
+    {
+        gameOver = true;
+        gameOverScreen.SetActive(true);
+        string vtext = "Player " + victoryPlayer.ToString();
+        victoryText.text = vtext;
+    }
+
+    
     void Update()
     {
-        
+ 
     }
 }

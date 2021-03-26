@@ -32,14 +32,10 @@ public class MovementController : MonoBehaviour
             roundController.AddMoveCount();
             roundController.canIMove = true;
         }
-
-       
-
     }
     public void Move(Vector3 endPosition)
     {
 
-       
         if (roundController.canIMove)
         {
             GameObject player;
