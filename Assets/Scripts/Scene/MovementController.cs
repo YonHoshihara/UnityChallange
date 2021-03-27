@@ -38,24 +38,30 @@ public class MovementController : MonoBehaviour
 
         if (roundController.canIMove)
         {
-            GameObject player;
+            GameObject playerOnTurn, playerOnStand;
             if (roundController.GetPlayerOnTurn() == 1)
             {
-                player = gameController.player1;
+                playerOnTurn = gameController.player1;
+                playerOnStand = gameController.player2;
             }
             else
             {
-                player = gameController.player2;
+                playerOnTurn = gameController.player2;
+                playerOnStand = gameController.player1;
             }
 
-            Vector3 startPosition = player.transform.position;
+            Vector3 startPosition = playerOnTurn.transform.position;
             endPosition = new Vector3(endPosition.x, startPosition.y, endPosition.z);
             Vector3 distance = endPosition - startPosition;
 
-            if (distance.magnitude <= 1.375f)
+            if ((distance.magnitude <= 1.375f)&&(endPosition != playerOnStand.transform.position))
             {
-                StartCoroutine(Move(player, startPosition, endPosition, 2));
+                StartCoroutine(Move(playerOnTurn, startPosition, endPosition, 2));
 
+            }
+            else
+            {
+                Debug.Log("Can't move");
             }
         }
     }

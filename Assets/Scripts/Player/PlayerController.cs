@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
     private GameController gameController;
+    public int health;
+    public int atack;
     [SerializeField] private bool die;
     void Start()
     {
