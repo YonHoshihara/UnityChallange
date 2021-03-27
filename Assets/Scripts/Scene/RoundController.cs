@@ -12,6 +12,7 @@ public class RoundController : MonoBehaviour
     private int moveCount;
     [SerializeField] private GameController gameController;
     [SerializeField] private Text movementCounterText, playerOnTurnText, movementLeftText;
+    [SerializeField] private BattleController battleController;
     public bool canIMove;
     
     void Start()
@@ -41,7 +42,7 @@ public class RoundController : MonoBehaviour
     {
         if (canIMove)
         {
-            if (moveCount == 3)
+            if ((moveCount == 3)&&(battleController.battleEnd))
             {
                 if (playerOnTurn == 1)
                 {
@@ -58,20 +59,21 @@ public class RoundController : MonoBehaviour
     private void ShowCurrentPlayerOnTurn()
     {
         string text;
-        if (playerOnTurn == 1)
-        {
+        if (playerOnTurn == 1) {
+                
             text = "Blue Turn";
             playerOnTurnText.color = Color.blue;
             movementCounterText.color = Color.blue;
             movementLeftText.color = Color.blue;
         }
-        else
-        {
+        
+        else {
             text = "Red Turn";
             playerOnTurnText.color = Color.red;
             movementCounterText.color = Color.red;
             movementLeftText.color = Color.red;
         }
+            
         playerOnTurnText.text = text;
     }
     private void ShowMovementLeft()

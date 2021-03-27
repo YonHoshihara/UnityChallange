@@ -1050,9 +1050,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inbattle: 0
-  battleMinDistance: 1.56
+  battleEnd: 0
+  battleMinDistance: 1.6
   gameController: {fileID: 1542816699}
-  RoundController: {fileID: 1851021970}
+  roundController: {fileID: 1851021970}
 --- !u!114 &1542816699 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3941570337929566815, guid: 17adc253d9dbe06479e0d15051043803,
@@ -1569,6 +1570,11 @@ PrefabInstance:
       propertyPath: movementLeftText
       value: 
       objectReference: {fileID: 1918782727}
+    - target: {fileID: -6655682602705465554, guid: 17adc253d9dbe06479e0d15051043803,
+        type: 3}
+      propertyPath: battleController
+      value: 
+      objectReference: {fileID: 1542816697}
     - target: {fileID: 3088563985449663478, guid: 17adc253d9dbe06479e0d15051043803,
         type: 3}
       propertyPath: roundController

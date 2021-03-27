@@ -30,13 +30,13 @@ public class MovementController : MonoBehaviour
                 player.transform.position = Vector3.Lerp(startPosition, endPosition, time);
                 yield return null;
             }
-            roundController.AddMoveCount();
             if (battleController.inbattle)
             {
                 Debug.Log("Battle Start");
                 battleController.Battle();
             }
-            
+            roundController.AddMoveCount();
+
             roundController.canIMove = true;
         }
     }

@@ -5,14 +5,21 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
+    private GameObject controller;
     private GameController gameController;
+    private RoundController roundControler;
+    private BattleController battleController;
     public int health;
     public int atack;
     public int dicesNumber;
     [SerializeField] private bool die;
+    [SerializeField] private Animator anim;
     void Start()
     {
-        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        controller = GameObject.FindGameObjectWithTag("GameController");
+        gameController = controller.GetComponent<GameController>();
+        roundControler = controller.GetComponent<RoundController>();
+        battleController = controller.GetComponent<BattleController>();
     }
 
     // Update is called once per frame
@@ -30,5 +37,26 @@ public class PlayerController : MonoBehaviour
             }
            
         }
+    }
+    public void getDamage(int damage)
+    {
+        StartCoroutine(Damage(damage));
+    }
+
+    IEnumerator Damage(int damage)
+    {
+
+        roundControler.canIMove = false;
+        battleController.battleEnd = false;
+        AnimatorClipInfo[] clipInfo;
+        float aninDuration;
+        health -= damage;
+        anim.SetTrigger("damage");
+        clipInfo = anim.GetCurrentAnimatorClipInfo(0);
+        aninDuration = clipInfo[0].clip.length;
+        yield return new WaitForSeconds(2*aninDuration);
+        anim.SetTrigger("damage");
+        roundControler.canIMove = true;
+        battleController.battleEnd = true;
     }
 }

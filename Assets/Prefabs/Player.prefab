@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6798139120072757869}
   - component: {fileID: 6798139120072757866}
   - component: {fileID: -921422902656014437}
+  - component: {fileID: 7754452881811660804}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -106,7 +107,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ac80324176b0e4885075efc67ed423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  atack: 0
+  health: 10
+  atack: 1
   dicesNumber: 3
   die: 0
+  anim: {fileID: 7754452881811660804}
+--- !u!95 &7754452881811660804
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6798139120072757867}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d68007312a191534197e7b8aeef41e59, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

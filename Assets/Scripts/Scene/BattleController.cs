@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BattleController : MonoBehaviour
 {
-    public bool inbattle;
+    public bool inbattle,battleEnd;
     public float battleMinDistance;
     [SerializeField] private GameController gameController;
-    [SerializeField] private RoundController RoundController;
+    [SerializeField] private RoundController roundController;
     private List<int> player1Dices, player2Dices;
     private int currentBattleVictory;
     private float distance;
@@ -15,6 +15,7 @@ public class BattleController : MonoBehaviour
     void Start()
     {
         inbattle = false;
+        battleEnd = true;
         List<int> test_list = new List<int>();
     }
     // Update is called once per frame
@@ -34,21 +35,33 @@ public class BattleController : MonoBehaviour
     public void Battle()
     {
         StartCoroutine(StartBattle());
+  
     }
     IEnumerator StartBattle()
     {
+        roundController.canIMove = false;
+        battleEnd = false;
+        PlayerController player1, player2;
+        player1 = gameController.player1.GetComponent<PlayerController>();
+        player2 = gameController.player2.GetComponent<PlayerController>();
         player1Dices = new List<int>();
         player2Dices = new List<int>();
-        player1Dices = GeneratePlayerRolls(gameController.player1.GetComponent<PlayerController>());
-        player2Dices = GeneratePlayerRolls(gameController.player2.GetComponent<PlayerController>());
+        player1Dices = GeneratePlayerRolls(player1);
+        player2Dices = GeneratePlayerRolls(player2);
         currentBattleVictory = CompareDices(player1Dices, player2Dices);
-        Debug.Log(currentBattleVictory);
         yield return new WaitForSeconds(.2f);
+        if (currentBattleVictory == 1)
+        {
+            player2.getDamage(player1.atack);
+        }
+        else
+        {
+            player1.getDamage(player2.atack);
+        }
     }
 
     private int CompareDices(List<int> player1Dices, List<int> player2Dices)
     {
-  
         int player1VictoryCounter = 0; 
         int player2VictoryCounter = 0;
         int minDicesValue = Mathf.Min(player1Dices.Count,player2Dices.Count);
@@ -57,7 +70,7 @@ public class BattleController : MonoBehaviour
         {
             if (player1Dices[i] == player2Dices[i])
             {
-                if (RoundController.GetPlayerOnTurn() == 1)
+                if (roundController.GetPlayerOnTurn() == 1)
                 {
                     player1VictoryCounter++;
                 }
