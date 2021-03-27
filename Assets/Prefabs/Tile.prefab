@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 10377ccec2b6a724ea61b0748de4a09c, type: 2}
+  - {fileID: 2100000, guid: ee8a10786c06d1a4abdc663e46bbc816, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,7 +106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2948f205fed3e43a060b707316b1ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundController: {fileID: -6655682602705465554, guid: 17adc253d9dbe06479e0d15051043803,
-    type: 3}
+  gameController: {fileID: 0}
   movementController: {fileID: 3088563985449663478, guid: 17adc253d9dbe06479e0d15051043803,
     type: 3}

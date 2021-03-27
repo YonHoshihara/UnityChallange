@@ -62,11 +62,18 @@ public class GameController : MonoBehaviour
     {
         gameOver = true;
         gameOverScreen.SetActive(true);
-        string vtext = "Player " + victoryPlayer.ToString();
+        string vtext = "";
+        if (victoryPlayer == 1)
+        {
+            vtext = "Blue";
+        }
+        else
+        {
+            vtext = "Red";
+        }
         victoryText.text = vtext;
     }
 
-    
     void Update()
     {
  

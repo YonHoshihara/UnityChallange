@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RoundController : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class RoundController : MonoBehaviour
     [Range(0,3)]
     private int moveCount;
     [SerializeField] private GameController gameController;
+    [SerializeField] private Text movementCounterText, playerOnTurnText, movementLeftText;
     public bool canIMove;
     
     void Start()
@@ -27,13 +29,14 @@ public class RoundController : MonoBehaviour
         {
             canIMove = false;
         }
+        ShowCurrentPlayerOnTurn();
+        ShowMovementLeft();
     }
 
     void FixedUpdate()
     {
         CheckCurrentPlayer();
     }
-
     private void CheckCurrentPlayer()
     {
         if (canIMove)
@@ -52,7 +55,30 @@ public class RoundController : MonoBehaviour
             }
         }
     }
-    
+    private void ShowCurrentPlayerOnTurn()
+    {
+        string text;
+        if (playerOnTurn == 1)
+        {
+            text = "Blue Turn";
+            playerOnTurnText.color = Color.blue;
+            movementCounterText.color = Color.blue;
+            movementLeftText.color = Color.blue;
+        }
+        else
+        {
+            text = "Red Turn";
+            playerOnTurnText.color = Color.red;
+            movementCounterText.color = Color.red;
+            movementLeftText.color = Color.red;
+        }
+        playerOnTurnText.text = text;
+    }
+    private void ShowMovementLeft()
+    {
+        string text = (3 - moveCount).ToString();
+        movementCounterText.text = text;
+    }
     public void AddMoveCount()
     {
         moveCount++;
