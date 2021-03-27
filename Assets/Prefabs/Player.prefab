@@ -109,7 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   atack: 2
-  dicesNumber: 3
+  dicesNumber: 4
   die: 0
   anim: {fileID: 7754452881811660804}
 --- !u!95 &7754452881811660804

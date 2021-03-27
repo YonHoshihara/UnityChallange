@@ -10,8 +10,11 @@ public class RoundController : MonoBehaviour
     public int playerOnTurn;
     [Range(0,3)]
     private int moveCount;
+    private PlayerController playerController1, playerController2;
     [SerializeField] private GameController gameController;
-    [SerializeField] private Text movementCounterText, playerOnTurnText, movementLeftText;
+    [SerializeField] private Text movementCounterText, playerOnTurnText, movementLeftText, atackText, dicesText;
+    [SerializeField] private Image lifeBarbackground, lifebarHanddler;
+    [SerializeField] private Slider lifeBar;
     [SerializeField] private BattleController battleController;
     public bool canIMove;
     
@@ -20,6 +23,8 @@ public class RoundController : MonoBehaviour
         moveCount = 0;
         playerOnTurn = 1;
         canIMove = true;
+        playerController1 = gameController.player1.GetComponent<PlayerController>();
+        playerController2 = gameController.player2.GetComponent<PlayerController>();
        
     }
 
@@ -62,16 +67,32 @@ public class RoundController : MonoBehaviour
         if (playerOnTurn == 1) {
                 
             text = "Blue Turn";
+            atackText.text = "Atack: " + playerController1.atack;
+            dicesText.text = "Dices: " + playerController1.dicesNumber;
+            lifeBar.value = playerController1.health;
             playerOnTurnText.color = Color.blue;
             movementCounterText.color = Color.blue;
             movementLeftText.color = Color.blue;
+            lifeBarbackground.color = Color.blue;
+            atackText.color = Color.blue;
+            dicesText.color = Color.blue;
+            lifebarHanddler.color = Color.blue;
         }
         
         else {
             text = "Red Turn";
+            atackText.text = "Atack: " + playerController2.atack;
+            dicesText.text = "Dices: " + playerController2.dicesNumber;
+            lifeBar.value = playerController2.health;
             playerOnTurnText.color = Color.red;
             movementCounterText.color = Color.red;
             movementLeftText.color = Color.red;
+            atackText.color = Color.red;
+            dicesText.color = Color.red;
+            atackText.color = Color.red;
+            dicesText.color = Color.red;
+            lifeBarbackground.color = Color.red;
+            lifebarHanddler.color = Color.red;
         }
             
         playerOnTurnText.text = text;
