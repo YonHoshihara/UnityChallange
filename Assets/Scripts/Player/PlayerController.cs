@@ -56,7 +56,12 @@ public class PlayerController : MonoBehaviour
         aninDuration = clipInfo[0].clip.length;
         yield return new WaitForSeconds(2*aninDuration);
         anim.SetTrigger("damage");
+        if (health <=0)
+        {
+            die = true;
+        }
         roundControler.canIMove = true;
         battleController.battleEnd = true;
+        
     }
 }
