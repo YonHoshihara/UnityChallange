@@ -101,4 +101,8 @@ public class GridController : MonoBehaviour
         return cellSize;
     }
 
+    public int GetGridSize()
+    {
+        return max_size;
+    }
 }

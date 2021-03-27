@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private GameController gameController;
     private RoundController roundControler;
     private BattleController battleController;
-    public int health;
+    public int health, maxHealth;
     public int atack;
     public int dicesNumber;
     [SerializeField] private bool die;
@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
         gameController = controller.GetComponent<GameController>();
         roundControler = controller.GetComponent<RoundController>();
         battleController = controller.GetComponent<BattleController>();
+        health = maxHealth;
     }
 
     // Update is called once per frame
@@ -63,5 +64,22 @@ public class PlayerController : MonoBehaviour
         roundControler.canIMove = true;
         battleController.battleEnd = true;
         
+    }
+
+    public void AddHealth(int healthToAdd)
+    {
+        if ((health + healthToAdd)>= maxHealth)
+        {
+            health = maxHealth;
+        }
+        else
+        {
+            health += healthToAdd;
+        }
+    }
+    
+    public void ResetDices()
+    {
+        dicesNumber = 3;
     }
 }

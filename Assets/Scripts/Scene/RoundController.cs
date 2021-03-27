@@ -65,11 +65,13 @@ public class RoundController : MonoBehaviour
     {
         string text;
         if (playerOnTurn == 1) {
-                
+
+            playerController1.ResetDices();
             text = "Blue Turn";
             atackText.text = "Atack: " + playerController1.atack;
             dicesText.text = "Dices: " + playerController1.dicesNumber;
             lifeBar.value = playerController1.health;
+            lifeBar.maxValue = playerController1.maxHealth;
             playerOnTurnText.color = Color.blue;
             movementCounterText.color = Color.blue;
             movementLeftText.color = Color.blue;
@@ -80,10 +82,12 @@ public class RoundController : MonoBehaviour
         }
         
         else {
+            playerController2.ResetDices();
             text = "Red Turn";
             atackText.text = "Atack: " + playerController2.atack;
             dicesText.text = "Dices: " + playerController2.dicesNumber;
             lifeBar.value = playerController2.health;
+            lifeBar.maxValue = playerController2.maxHealth;
             playerOnTurnText.color = Color.red;
             movementCounterText.color = Color.red;
             movementLeftText.color = Color.red;
@@ -105,6 +109,11 @@ public class RoundController : MonoBehaviour
     public void AddMoveCount()
     {
         moveCount++;
+    }
+
+    public void RemoveMoveCount()
+    {
+        moveCount--;
     }
     public int GetPlayerOnTurn()
     {
