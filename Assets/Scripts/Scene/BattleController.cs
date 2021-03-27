@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BattleController : MonoBehaviour
 {
@@ -8,15 +9,19 @@ public class BattleController : MonoBehaviour
     public float battleMinDistance;
     [SerializeField] private GameController gameController;
     [SerializeField] private RoundController roundController;
+    [SerializeField] private GameObject diceRollsTable;
+    [SerializeField] private Text battleWinnerFeedback;
+    private GameObject[] reddices, bluedices;
     private List<int> player1Dices, player2Dices;
     private int currentBattleVictory;
     private float distance;
+
     // Start is called before the first frame update
     void Start()
     {
+        
         inbattle = false;
         battleEnd = true;
-        List<int> test_list = new List<int>();
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -39,6 +44,8 @@ public class BattleController : MonoBehaviour
     }
     IEnumerator StartBattle()
     {
+        reddices = GameObject.FindGameObjectsWithTag("reddice");
+        bluedices = GameObject.FindGameObjectsWithTag("bluedice");
         roundController.canIMove = false;
         battleEnd = false;
         PlayerController player1, player2;
@@ -49,13 +56,57 @@ public class BattleController : MonoBehaviour
         player1Dices = GeneratePlayerRolls(player1);
         player2Dices = GeneratePlayerRolls(player2);
         currentBattleVictory = CompareDices(player1Dices, player2Dices);
+        diceRollsTable.SetActive(true);
+        reddices = GameObject.FindGameObjectsWithTag("reddice");
+        bluedices = GameObject.FindGameObjectsWithTag("bluedice");
+        RestetDicesView(reddices);
+        RestetDicesView(bluedices);
+        for (int i = 0; i < bluedices.Length; i++)
+        {
+            Animator anim = bluedices[i].GetComponent<Animator>();
+            AnimatorClipInfo[] clipInfo;
+            float aninDuration;
+            anim.SetTrigger("roll");
+            clipInfo = anim.GetCurrentAnimatorClipInfo(0);
+            aninDuration = clipInfo[0].clip.length;
+            yield return new WaitForSeconds(2*aninDuration);
+            anim.SetTrigger("roll");
+            Text number = bluedices[i].GetComponentInChildren<Text>();
+            number.text = player1Dices[i].ToString();
+        }
+
+
+        for (int i = 0; i < reddices.Length; i++)
+        {
+            Animator anim = reddices[i].GetComponent<Animator>();
+            AnimatorClipInfo[] clipInfo;
+            float aninDuration;
+            anim.SetTrigger("roll");
+            clipInfo = anim.GetCurrentAnimatorClipInfo(0);
+            aninDuration = clipInfo[0].clip.length;
+            yield return new WaitForSeconds(2 * aninDuration);
+            anim.SetTrigger("roll");
+            Text number = reddices[i].GetComponentInChildren<Text>();
+            number.text = player2Dices[i].ToString();
+        }
+        
         yield return new WaitForSeconds(.2f);
         if (currentBattleVictory == 1)
         {
+            battleWinnerFeedback.color = Color.blue;
+            battleWinnerFeedback.text = "Blue Wins";
+            yield return new WaitForSeconds(2f);
+            diceRollsTable.SetActive(false);
+            battleWinnerFeedback.text = "";
             player2.getDamage(player1.atack);
         }
         else
         {
+            battleWinnerFeedback.color = Color.red;
+            battleWinnerFeedback.text = "Red Wins";
+            yield return new WaitForSeconds(2f);
+            diceRollsTable.SetActive(false);
+            battleWinnerFeedback.text = "";
             player1.getDamage(player2.atack);
         }
     }
@@ -66,7 +117,7 @@ public class BattleController : MonoBehaviour
         int player2VictoryCounter = 0;
         int minDicesValue = Mathf.Min(player1Dices.Count,player2Dices.Count);
         
-        for (int i = 0; i < minDicesValue; i++)
+        for (int i = 0; i < 3; i++)
         {
             if (player1Dices[i] == player2Dices[i])
             {
@@ -117,4 +168,12 @@ public class BattleController : MonoBehaviour
         return dice_number;
     }
 
+    private void RestetDicesView(GameObject[] diceRolls)
+    {
+        for (int i = 0; i < diceRolls.Length; i++)
+        {
+            Text number = diceRolls[i].GetComponentInChildren<Text>();
+            number.text = "";
+        }
+    }
 }
