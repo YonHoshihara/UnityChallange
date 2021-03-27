@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8962264, g: 0.114417754, b: 0.10568706, a: 1}
+  m_Color: {r: 0, g: 0.11269808, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -234,7 +234,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 320.3, y: 211.9}
+  m_AnchoredPosition: {x: 320.3, y: 199.1}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &514859319
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0.16026388, b: 0.9622642, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1037,6 +1037,34 @@ MonoBehaviour:
   fade: {fileID: 619883066}
   credits: {fileID: 0}
   loadSceneTime: 1
+--- !u!114 &1542816697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542816695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02a8347ecea9e0941a4e68a31fc9f2f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inbattle: 0
+  battleMinDistance: 1.56
+  gameController: {fileID: 1542816699}
+  RoundController: {fileID: 1851021970}
+--- !u!114 &1542816699 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3941570337929566815, guid: 17adc253d9dbe06479e0d15051043803,
+    type: 3}
+  m_PrefabInstance: {fileID: 3941570336740117152}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542816695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 000a60b5dedf61646b06b2c4e4ef2376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1549924051
 GameObject:
   m_ObjectHideFlags: 0
@@ -1485,7 +1513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0.084820986, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1546,6 +1574,11 @@ PrefabInstance:
       propertyPath: roundController
       value: 
       objectReference: {fileID: 1851021970}
+    - target: {fileID: 3088563985449663478, guid: 17adc253d9dbe06479e0d15051043803,
+        type: 3}
+      propertyPath: battleController
+      value: 
+      objectReference: {fileID: 1542816697}
     - target: {fileID: 3941570337929566812, guid: 17adc253d9dbe06479e0d15051043803,
         type: 3}
       propertyPath: m_Name

@@ -106,3 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ac80324176b0e4885075efc67ed423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
+  atack: 0
+  dicesNumber: 3
+  die: 0

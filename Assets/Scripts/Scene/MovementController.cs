@@ -7,6 +7,7 @@ public class MovementController : MonoBehaviour
     // Start is called before the first frame update
     public GameController gameController;
     [SerializeField] RoundController roundController;
+    [SerializeField] BattleController battleController;
     void Start()
     {
     }
@@ -30,6 +31,12 @@ public class MovementController : MonoBehaviour
                 yield return null;
             }
             roundController.AddMoveCount();
+            if (battleController.inbattle)
+            {
+                Debug.Log("Battle Start");
+                battleController.Battle();
+            }
+            
             roundController.canIMove = true;
         }
     }

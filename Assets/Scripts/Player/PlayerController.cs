@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private GameController gameController;
     public int health;
     public int atack;
+    public int dicesNumber;
     [SerializeField] private bool die;
     void Start()
     {
