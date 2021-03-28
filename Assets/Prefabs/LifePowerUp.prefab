@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3333224042335772893}
   - component: {fileID: 7567665841989393888}
   - component: {fileID: 4487104569124259556}
+  - component: {fileID: 4816461424871432441}
   m_Layer: 0
   m_Name: LifePowerUp
   m_TagString: PowerUp
@@ -110,3 +111,17 @@ MonoBehaviour:
   move: 0
   dice: 0
   healthRecover: 2
+--- !u!114 &4816461424871432441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2280935862980191986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e2948f205fed3e43a060b707316b1ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameController: {fileID: 0}
+  movementController: {fileID: 0}

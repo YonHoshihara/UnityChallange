@@ -9,6 +9,7 @@ public class BattleController : MonoBehaviour
     public float battleMinDistance;
     [SerializeField] private GameController gameController;
     [SerializeField] private RoundController roundController;
+    [SerializeField] private SoundController sounController;
     [SerializeField] private GameObject diceRollsTable;
     [SerializeField] private Text battleWinnerFeedback;
     private PlayerController  player1, player2;
@@ -88,6 +89,7 @@ public class BattleController : MonoBehaviour
             AnimatorClipInfo[] clipInfo;
             float aninDuration;
             anim.SetTrigger("roll");
+            sounController.playDiceSound();
             clipInfo = anim.GetCurrentAnimatorClipInfo(0);
             aninDuration = clipInfo[0].clip.length;
             yield return new WaitForSeconds(2 * aninDuration);

@@ -5,6 +5,7 @@ using UnityEngine;
 public class GridController : MonoBehaviour
 {
     // Start is called before the first frame update
+    [SerializeField] private GameObject tileBase;
     [SerializeField] private GameObject tile;
     [SerializeField] private GameObject startPointTile;
     [SerializeField] private GameObject endPointTile;
@@ -69,14 +70,20 @@ public class GridController : MonoBehaviour
                 grid[i, j] = coordinate;
                 if (i == startPosition.x && j == startPosition.y)
                 {
-                    Instantiate(startPointTile, coordinate, Quaternion.identity);
+                    GameObject tileaux;
+                    tileaux = Instantiate(startPointTile, coordinate, Quaternion.identity);
+                    tileaux.transform.parent = tileBase.transform;
                 }else if (i == endPosition.x && j == endPosition.y)
                 {
-                    Instantiate(endPointTile, coordinate, Quaternion.identity);
+                    GameObject tileaux;
+                    tileaux = Instantiate(endPointTile, coordinate, Quaternion.identity);
+                    tileaux.transform.parent = tileBase.transform;
                 }
                 else
                 {
-                    Instantiate(tile, coordinate, Quaternion.identity);
+                    GameObject tileaux;
+                    tileaux = Instantiate(tile, coordinate, Quaternion.identity);
+                    tileaux.transform.parent = tileBase.transform;
                 }
             }
         }

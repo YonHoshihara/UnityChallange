@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  maxHealth: 20
+  maxHealth: 10
   atack: 5
   dicesNumber: 3
   die: 0

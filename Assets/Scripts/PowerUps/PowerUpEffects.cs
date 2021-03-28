@@ -7,12 +7,17 @@ public class PowerUpEffects : MonoBehaviour
     // Start is called before the first frame update
     public bool life, move, dice;
     public int healthRecover;
+    private GameObject gameController;
     private RoundController roundController;
     private PowerUpController poweUpController;
+    private SoundController soundController;
 
     void Start()
     {
-        poweUpController = GameObject.FindGameObjectWithTag("GameController").GetComponent<PowerUpController>();
+        gameController = GameObject.FindGameObjectWithTag("GameController");
+        poweUpController = gameController.GetComponent<PowerUpController>();
+        roundController = gameController.GetComponent<RoundController>();
+        soundController = gameController.GetComponent<SoundController>();
     }
 
     public void OnTriggerEnter(Collider other)
@@ -20,6 +25,8 @@ public class PowerUpEffects : MonoBehaviour
         
         if (other.gameObject.tag.Contains("Player"))
         {
+
+            soundController.playCollectSound();
             if (life)
             {
                 other.gameObject.GetComponent<PlayerController>().AddHealth(healthRecover);
@@ -27,13 +34,12 @@ public class PowerUpEffects : MonoBehaviour
 
             if (move)
             {
-                roundController = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoundController>();
                 roundController.RemoveMoveCount();
             }
 
             if (dice) {
 
-                other.gameObject.GetComponent<PlayerController>().dicesNumber ++;
+                other.gameObject.GetComponent<PlayerController>().AddDice();
             
             }
 

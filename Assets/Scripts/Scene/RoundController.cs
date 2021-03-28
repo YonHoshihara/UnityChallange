@@ -51,11 +51,14 @@ public class RoundController : MonoBehaviour
             {
                 if (playerOnTurn == 1)
                 {
+                    playerController1.ResetDices();
+                    playerController2.ResetDices();
                     playerOnTurn = 2;
                     moveCount = 0;
 
                 }
                 else
+                    
                     playerOnTurn = 1;
                     moveCount = 0;
             }
@@ -66,10 +69,9 @@ public class RoundController : MonoBehaviour
         string text;
         if (playerOnTurn == 1) {
 
-            playerController1.ResetDices();
             text = "Blue Turn";
-            atackText.text = "Atack: " + playerController1.atack;
-            dicesText.text = "Dices: " + playerController1.dicesNumber;
+            atackText.text = "Atack: " + playerController1.atack.ToString();
+            dicesText.text = "Dices: " + playerController1.dicesNumber.ToString();
             lifeBar.value = playerController1.health;
             lifeBar.maxValue = playerController1.maxHealth;
             playerOnTurnText.color = Color.blue;
@@ -82,10 +84,10 @@ public class RoundController : MonoBehaviour
         }
         
         else {
-            playerController2.ResetDices();
+            
             text = "Red Turn";
-            atackText.text = "Atack: " + playerController2.atack;
-            dicesText.text = "Dices: " + playerController2.dicesNumber;
+            atackText.text = "Atack: " + playerController2.atack.ToString();
+            dicesText.text = "Dices: " + playerController2.dicesNumber.ToString();
             lifeBar.value = playerController2.health;
             lifeBar.maxValue = playerController2.maxHealth;
             playerOnTurnText.color = Color.red;

@@ -8,6 +8,7 @@ public class MovementController : MonoBehaviour
     public GameController gameController;
     [SerializeField] RoundController roundController;
     [SerializeField] BattleController battleController;
+    [SerializeField] SoundController soundController;
     void Start()
     {
     }
@@ -18,6 +19,7 @@ public class MovementController : MonoBehaviour
         if (roundController.canIMove)
         {
             float time = 0;
+            soundController.plaMoveSound();
             while (time < 1)
             {
 
@@ -32,7 +34,6 @@ public class MovementController : MonoBehaviour
             }
             if (battleController.inbattle)
             {
-                Debug.Log("Battle Start");
                 battleController.Battle();
             }
             roundController.AddMoveCount();
@@ -68,7 +69,7 @@ public class MovementController : MonoBehaviour
             }
             else
             {
-                Debug.Log("Can't move");
+                soundController.playCancelSound();
             }
         }
     }

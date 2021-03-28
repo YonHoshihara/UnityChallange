@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private GameController gameController;
     private RoundController roundControler;
     private BattleController battleController;
+    private SoundController soundController;
     public int health, maxHealth;
     public int atack;
     public int dicesNumber;
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
         gameController = controller.GetComponent<GameController>();
         roundControler = controller.GetComponent<RoundController>();
         battleController = controller.GetComponent<BattleController>();
+        soundController = controller.GetComponent<SoundController>();
         health = maxHealth;
     }
 
@@ -53,6 +55,7 @@ public class PlayerController : MonoBehaviour
         float aninDuration;
         health -= damage;
         anim.SetTrigger("damage");
+        soundController.playGetDamageSound();
         clipInfo = anim.GetCurrentAnimatorClipInfo(0);
         aninDuration = clipInfo[0].clip.length;
         yield return new WaitForSeconds(2*aninDuration);
@@ -78,6 +81,10 @@ public class PlayerController : MonoBehaviour
         }
     }
     
+    public void AddDice()
+    {
+        dicesNumber++;
+    }
     public void ResetDices()
     {
         dicesNumber = 3;

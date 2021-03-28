@@ -5,6 +5,7 @@ using UnityEngine;
 public class PowerUpController : MonoBehaviour
 {
     // Start is called before the first frame update
+    [SerializeField] private GameObject powerUpBase;
     [SerializeField] private GameObject [] powerUpTipes;
     [SerializeField] private GridController gridController;
     private Vector2 startPosition, endPosition;
@@ -38,6 +39,7 @@ public class PowerUpController : MonoBehaviour
                     position = new Vector3(position.x, position.y + gridController.GetCellSize()/2, position.z);
                     int powerUpTipe = Random.Range(0, powerUpTipes.Length);
                     instantiatedPowerUps[i,j] = Instantiate(powerUpTipes[powerUpTipe], position, Quaternion.identity);
+                    instantiatedPowerUps[i, j].transform.parent = powerUpBase.transform;
 
                 }
             }
